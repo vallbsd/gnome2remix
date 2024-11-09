@@ -1,0 +1,4 @@
+--- src/glib-utils.h
++++ fixed/src/glib-utils.h
+@@ -62 +61,0 @@
+-GPtrArray *         g_ptr_array_copy             (GPtrArray   *array);

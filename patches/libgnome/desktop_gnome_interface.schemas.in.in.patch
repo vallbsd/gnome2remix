@@ -1,0 +1,5 @@
+--- schemas/desktop_gnome_interface.schemas.in.in
++++ fixed/schemas/desktop_gnome_interface.schemas.in.in
+@@ -68 +68 @@
+-      <default>false</default>
++      <default>true</default>

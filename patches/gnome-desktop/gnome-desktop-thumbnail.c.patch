@@ -1,0 +1,26 @@
+--- libgnome-desktop/gnome-desktop-thumbnail.c
++++ fixed/libgnome-desktop/gnome-desktop-thumbnail.c
+@@ -530 +530 @@
+-			   ".thumbnails",
++			   ".cache/thumbnails",
+@@ -591 +591 @@
+-			   ".thumbnails/fail",
++			   ".cache/thumbnails/fail",
+@@ -681 +681 @@
+-      strstr (uri, "/.thumbnails/") != NULL)
++      strstr (uri, "/.cache/thumbnails/") != NULL)
+@@ -921 +921 @@
+-				    ".thumbnails",
++				    ".cache/thumbnails",
+@@ -955 +955 @@
+-				    ".thumbnails",
++				    ".cache/thumbnails",
+@@ -1029 +1029 @@
+-			   ".thumbnails",
++			   ".cache/thumbnails",
+@@ -1133 +1133 @@
+-			   ".thumbnails/fail",
++			   ".cache/thumbnails/fail",
+@@ -1225 +1225 @@
+-			   ".thumbnails",
++			   ".cache/thumbnails",

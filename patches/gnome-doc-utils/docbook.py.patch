@@ -1,0 +1,26 @@
+--- xml2po/xml2po/modes/docbook.py
++++ fixed/xml2po/xml2po/modes/docbook.py
+@@ -46 +46 @@
+-from basic import basicXmlMode
++from xml2po.modes.basic import basicXmlMode
+@@ -134 +134 @@
+-                    print >>sys.stderr, "Warning: image file '%s' not found." % fullpath
++                    print("Warning: image file '%s' not found." % fullpath, file=sys.stderr)
+@@ -187 +187 @@
+-                        copy.newChild(None, "year", match.group(3).encode('utf-8'))
++                        copy.newChild(None, "year", match.group(3))
+@@ -196 +196 @@
+-                    copy.newChild(None, "holder", holder.encode('utf-8'))
++                    copy.newChild(None, "holder", holder)
+@@ -201,3 +201,3 @@
+-    print "Ignored tags       : " + repr(test.getIgnoredTags())
+-    print "Final tags         : " + repr(test.getFinalTags())
+-    print "Space-preserve tags: " + repr(test.getSpacePreserveTags())
++    print("Ignored tags       : " + repr(test.getIgnoredTags()))
++    print("Final tags         : " + repr(test.getFinalTags()))
++    print("Space-preserve tags: " + repr(test.getSpacePreserveTags()))
+@@ -205,2 +205,2 @@
+-    print "Credits from string: '%s'" % test.getStringForTranslators()
+-    print "Explanation for credits:\n\t'%s'" % test.getCommentForTranslators()
++    print("Credits from string: '%s'" % test.getStringForTranslators())
++    print("Explanation for credits:\n\t'%s'" % test.getCommentForTranslators())

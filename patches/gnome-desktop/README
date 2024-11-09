@@ -1,0 +1,2 @@
+Thumbnails cache path is hardcoded, but was changed years ago in
+gdk-pixbuf-thumbnailer, which is used by gnome-desktop for thumbnails generation.

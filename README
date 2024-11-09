@@ -1,0 +1,18 @@
+gnome2remix is a shell script and set of patches to properly build and run
+good old GNOME 2.32 on modern Ubuntu LTS 24.04 and Debian 12.
+
+It is not tested in other GNU/Linux distros currently but should work with
+slight modifications of list of dependecies.
+
+Usage:
+  # bash setup.sh
+
+Notes:
+  Please do not mix GNOME 2 with GNOME >= 3 on the same system.
+
+  Install directory is /usr/local/
+
+  Log file is /usr/local/var/gnome2remix.workdir/log
+
+  setup.sh works so that if error occured, it will continue from failed
+  position on rerun.

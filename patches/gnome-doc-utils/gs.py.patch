@@ -1,0 +1,5 @@
+--- xml2po/xml2po/modes/gs.py
++++ fixed/xml2po/xml2po/modes/gs.py
+@@ -23 +23 @@
+-from basic import basicXmlMode
++from xml2po.modes.basic import basicXmlMode

@@ -1,0 +1,56 @@
+--- xml2po/xml2po/__init__.py
++++ fixed/xml2po/xml2po/__init__.py
+@@ -203 +203 @@
+-            print >> sys.stderr, """Error while normalizing string as XML:\n"%s"\n""" % (text)
++            print("""Error while normalizing string as XML:\n"%s"\n""" % (text), file=sys.stderr)
+@@ -262 +262 @@
+-                        result += child.content.decode('utf-8')
++                        result += child.content
+@@ -329 +329 @@
+-            tmp = tmp + content.encode('utf-8')
++            tmp = tmp + content
+@@ -341 +341 @@
+-                print >> sys.stderr, """Error while parsing translation as XML:\n"%s"\n""" % (text.encode('utf-8'))
++                print("""Error while parsing translation as XML:\n"%s"\n""" % (text), file=sys.stderr)
+@@ -354,2 +354 @@
+-                    copy = newelem.copyNodeList()
+-                    next = node.next
++                    nextnode = node.next
+@@ -357 +356 @@
+-                    node.next = next
++                    node.__next__ = nextnode
+@@ -425 +424 @@
+-            self.replaceAttributeContentsWithText(attr, translation.encode('utf-8'))
++            self.replaceAttributeContentsWithText(attr, translation)
+@@ -466 +465 @@
+-            translation = outtxt.decode('utf-8')
++            translation = outtxt
+@@ -473 +472 @@
+-            translation = outtxt.decode('utf-8')
++            translation = outtxt
+@@ -580,2 +579,2 @@
+-            except Exception, e:
+-                print >> sys.stderr, "Unable to parse XML file '%s': %s" % (xmlfile, str(e))
++            except Exception as e:
++                print("Unable to parse XML file '%s': %s" % (xmlfile, str(e)), file=sys.stderr)
+@@ -593,2 +592,2 @@
+-        except Exception, e:
+-            print >> sys.stderr, str(e)
++        except Exception as e:
++            print(str(e), file=sys.stderr)
+@@ -600 +599 @@
+-            print >> sys.stderr, "Can't open MO file '%s'." % (mofile)
++            print("Can't open MO file '%s'." % (mofile), file=sys.stderr)
+@@ -622,2 +621,2 @@
+-        except Exception, e:
+-            print >> sys.stderr, str(e)
++        except Exception as e:
++            print(str(e), file=sys.stderr)
+@@ -630,2 +629,2 @@
+-        except Exception, e:
+-            print >> sys.stderr, str(e)
++        except Exception as e:
++            print(str(e), file=sys.stderr)
+@@ -666 +665 @@
+-            res = self.gt.ugettext(text.decode('utf-8'))
++            res = self.gt.gettext(text)

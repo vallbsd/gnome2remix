@@ -1,0 +1,5 @@
+--- src/lsof.cpp
++++ fixed/src/lsof.cpp
+@@ -140 +140 @@
+-      string s = static_cast<std::ostringstream&>(std::ostringstream() << count).str();
++      string s = (std::ostringstream() << count).str();

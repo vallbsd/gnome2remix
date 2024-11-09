@@ -1,0 +1,8 @@
+--- xml2po/xml2po/modes/mallard.py
++++ fixed/xml2po/xml2po/modes/mallard.py
+@@ -42 +42 @@
+-from basic import basicXmlMode
++from xml2po.modes.basic import basicXmlMode
+@@ -115 +115 @@
+-                    print >>sys.stderr, "Warning: image file '%s' not found." % fullpath
++                    print("Warning: image file '%s' not found." % fullpath, file=sys.stderr)

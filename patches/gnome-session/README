@@ -1,0 +1,9 @@
+Current Upower does not have up_client_get_can_hibernate() and
+up_client_get_can_suspend() so can not use dependent functions in gnome-session.
+
+Meanwhile I do not use sleep nor hibernation, so remove it.
+
+Also do not check if system supports reboot or shutdown.
+Use dumb system(3) call instead for now.
+
+This should be changed to proper solution later.

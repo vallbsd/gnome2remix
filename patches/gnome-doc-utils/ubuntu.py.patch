@@ -1,0 +1,5 @@
+--- xml2po/xml2po/modes/ubuntu.py
++++ fixed/xml2po/xml2po/modes/ubuntu.py
+@@ -5 +5 @@
+-from docbook import docbookXmlMode
++from xml2po.modes.docbook import docbookXmlMode

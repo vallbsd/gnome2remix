@@ -1,0 +1,188 @@
+--- gnome-session/gsm-manager.c
++++ fixed/gnome-session/gsm-manager.c
+@@ -984,46 +983,0 @@
+-manager_attempt_hibernate (GsmManager *manager)
+-{
+-        gboolean  can_hibernate;
+-        GError   *error;
+-        gboolean  ret;
+-
+-        can_hibernate = up_client_get_can_hibernate (manager->priv->up_client);
+-        if (can_hibernate) {
+-
+-                /* lock the screen before we suspend */
+-                manager_perhaps_lock (manager);
+-
+-                error = NULL;
+-                ret = up_client_hibernate_sync (manager->priv->up_client, NULL, &error);
+-                if (!ret) {
+-                        g_warning ("Unexpected hibernate failure: %s",
+-                                   error->message);
+-                        g_error_free (error);
+-                }
+-        }
+-}
+-
+-static void
+-manager_attempt_suspend (GsmManager *manager)
+-{
+-        gboolean  can_suspend;
+-        GError   *error;
+-        gboolean  ret;
+-
+-        can_suspend = up_client_get_can_suspend (manager->priv->up_client);
+-        if (can_suspend) {
+-
+-                /* lock the screen before we suspend */
+-                manager_perhaps_lock (manager);
+-
+-                error = NULL;
+-                ret = up_client_suspend_sync (manager->priv->up_client, NULL, &error);
+-                if (!ret) {
+-                        g_warning ("Unexpected suspend failure: %s",
+-                                   error->message);
+-                        g_error_free (error);
+-                }
+-        }
+-}
+-
+-static void
+@@ -1037,6 +990,0 @@
+-        case GSM_LOGOUT_ACTION_HIBERNATE:
+-                manager_attempt_hibernate (manager);
+-                break;
+-        case GSM_LOGOUT_ACTION_SLEEP:
+-                manager_attempt_suspend (manager);
+-                break;
+@@ -2605,3 +2552,0 @@
+-        GsmConsolekit *consolekit;
+-        gboolean       success;
+-
+@@ -2610,37 +2555 @@
+-        /* We request the privileges before doing anything. There are a few
+-         * different cases here:
+-         *
+-         *   - no ConsoleKit: we fallback on GDM
+-         *   - no password required: everything is fine
+-         *   - password asked once: we ask for it now. If the user enters it
+-         *     fine, then all is great. If the user doesn't enter it fine, we
+-         *     don't do anything (so no logout).
+-         *   - password asked each time: we don't ask it for now since we don't
+-         *     want to ask for it twice. Instead we'll ask for it at the very
+-         *     end. If the user will enter it fine, then all is great again. If
+-         *     the user doesn't enter it fine, then we'll just fallback to GDM.
+-         *
+-         * The last case (password asked each time) is a bit broken, but
+-         * there's really nothing we can do about it. Generally speaking,
+-         * though, the password will only be asked once (unless the system is
+-         * configured in paranoid mode), and most probably only if there are
+-         * more than one user connected. So the general case is that it will
+-         * just work fine.
+-         */
+-
+-        consolekit = gsm_get_consolekit ();
+-        g_signal_connect (consolekit,
+-                          "privileges-completed",
+-                          G_CALLBACK (request_reboot_privileges_completed),
+-                          manager);
+-        success = gsm_consolekit_get_restart_privileges (consolekit);
+-
+-        if (!success) {
+-                g_signal_handlers_disconnect_by_func (consolekit,
+-                                                      request_reboot_privileges_completed,
+-                                                      manager);
+-                g_object_unref (consolekit);
+-
+-                manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_GDM;
+-                end_phase (manager);
+-        }
++	system("systemctl reboot");
+@@ -2679,3 +2587,0 @@
+-        GsmConsolekit *consolekit;
+-        gboolean       success;
+-
+@@ -2684,74 +2590 @@
+-        /* See the comment in request_reboot() for some more details about how
+-         * this works. */
+-
+-        consolekit = gsm_get_consolekit ();
+-        g_signal_connect (consolekit,
+-                          "privileges-completed",
+-                          G_CALLBACK (request_shutdown_privileges_completed),
+-                          manager);
+-        success = gsm_consolekit_get_stop_privileges (consolekit);
+-
+-        if (!success) {
+-                g_signal_handlers_disconnect_by_func (consolekit,
+-                                                      request_shutdown_privileges_completed,
+-                                                      manager);
+-                g_object_unref (consolekit);
+-
+-                manager->priv->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_GDM;
+-                end_phase (manager);
+-        }
+-}
+-
+-static void
+-request_suspend (GsmManager *manager)
+-{
+-        g_debug ("GsmManager: requesting suspend");
+-
+-        if (! gsm_manager_is_suspend_inhibited (manager)) {
+-                manager_attempt_suspend (manager);
+-                return;
+-        }
+-
+-        if (manager->priv->inhibit_dialog != NULL) {
+-                g_debug ("GsmManager: inhibit dialog already up");
+-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+-                return;
+-        }
+-
+-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+-                                                                manager->priv->clients,
+-                                                                GSM_LOGOUT_ACTION_SLEEP);
+-
+-        g_signal_connect (manager->priv->inhibit_dialog,
+-                          "response",
+-                          G_CALLBACK (inhibit_dialog_response),
+-                          manager);
+-        gtk_widget_show (manager->priv->inhibit_dialog);
+-}
+-
+-static void
+-request_hibernate (GsmManager *manager)
+-{
+-        g_debug ("GsmManager: requesting hibernate");
+-
+-        /* hibernate uses suspend inhibit */
+-        if (! gsm_manager_is_suspend_inhibited (manager)) {
+-                manager_attempt_hibernate (manager);
+-                return;
+-        }
+-
+-        if (manager->priv->inhibit_dialog != NULL) {
+-                g_debug ("GsmManager: inhibit dialog already up");
+-                gtk_window_present (GTK_WINDOW (manager->priv->inhibit_dialog));
+-                return;
+-        }
+-
+-        manager->priv->inhibit_dialog = gsm_inhibit_dialog_new (manager->priv->inhibitors,
+-                                                                manager->priv->clients,
+-                                                                GSM_LOGOUT_ACTION_HIBERNATE);
+-
+-        g_signal_connect (manager->priv->inhibit_dialog,
+-                          "response",
+-                          G_CALLBACK (inhibit_dialog_response),
+-                          manager);
+-        gtk_widget_show (manager->priv->inhibit_dialog);
++	system("systemctl poweroff");
+@@ -2760 +2592,0 @@
+-
+@@ -2819,6 +2650,0 @@
+-                break;
+-        case GSM_LOGOUT_RESPONSE_HIBERNATE:
+-                request_hibernate (manager);
+-                break;
+-        case GSM_LOGOUT_RESPONSE_SLEEP:
+-                request_suspend (manager);

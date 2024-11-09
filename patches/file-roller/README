@@ -1,0 +1,1 @@
+Fix building file-roller by removing g_ptr_array_copy() because glib already has it.

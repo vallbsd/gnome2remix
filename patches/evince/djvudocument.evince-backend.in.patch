@@ -1,0 +1,5 @@
+--- backend/djvu/djvudocument.evince-backend.in
++++ fixed/backend/djvu/djvudocument.evince-backend.in
+@@ -4 +4 @@
+-MimeType=image/vnd.djvu
++MimeType=image/vnd.djvu;image/vnd.djvu+multipage

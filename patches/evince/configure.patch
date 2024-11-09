@@ -1,0 +1,5 @@
+--- configure
++++ fixed/configure
+@@ -21436 +21436 @@
+-	EVINCE_MIME_TYPES="${EVINCE_MIME_TYPES}image/vnd.djvu;"
++	EVINCE_MIME_TYPES="${EVINCE_MIME_TYPES}image/vnd.djvu;image/vnd.djvu+multipage"

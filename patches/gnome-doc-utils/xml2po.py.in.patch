@@ -1,0 +1,29 @@
+--- xml2po/xml2po/xml2po.py.in
++++ fixed/xml2po/xml2po/xml2po.py.in
+@@ -44 +44 @@
+-    print >> sys.stderr, "Usage:  %s [OPTIONS] [XMLFILE]..." % (sys.argv[0])
++    print("Usage:  %s [OPTIONS] [XMLFILE]..." % (sys.argv[0]), file=sys.stderr)
+@@ -46 +46 @@
+-        print >> sys.stderr, """
++        print("""
+@@ -75 +75 @@
+-""" % {'command': sys.argv[0]}
++""" % {'command': sys.argv[0]}, file=sys.stderr) 
+@@ -85 +85 @@
+-        print >> sys.stderr, 'Running from source folder, modifying PYTHONPATH'
++        print('Running from source folder, modifying PYTHONPATH', file=sys.stderr) 
+@@ -145 +145 @@
+-            print VERSION
++            print(VERSION)
+@@ -152 +152 @@
+-        print >> sys.stderr, "Option '-o' is not yet supported when updating translations directly. Ignoring this option."
++        print("Option '-o' is not yet supported when updating translations directly. Ignoring this option.", file=sys.stderr)
+@@ -162 +162 @@
+-        print >> sys.stderr, "Error: cannot open file %s for writing." % (output)
++        print("Error: cannot open file %s for writing." % (output), file=sys.stderr)
+@@ -167 +167 @@
+-            print  >> sys.stderr, "Error: You can merge translations with only one XML file at a time."
++            print("Error: You can merge translations with only one XML file at a time.", file=sys.stderr)
+@@ -171 +171 @@
+-            print >> sys.stderr, "Error: You must specify MO file when merging translations."
++            print("Error: You must specify MO file when merging translations.", file=sys.stderr)

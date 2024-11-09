@@ -1,0 +1,5 @@
+--- xml2po/xml2po/modes/xhtml.py
++++ fixed/xml2po/xml2po/modes/xhtml.py
+@@ -24 +24 @@
+-from basic import basicXmlMode
++from xml2po.modes.basic import basicXmlMode

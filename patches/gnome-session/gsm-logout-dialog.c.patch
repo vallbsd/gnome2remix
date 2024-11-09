@@ -1,0 +1,64 @@
+--- gnome-session/gsm-logout-dialog.c
++++ fixed/gnome-session/gsm-logout-dialog.c
+@@ -183,12 +182,0 @@
+-gsm_logout_supports_system_suspend (GsmLogoutDialog *logout_dialog)
+-{
+-        return up_client_get_can_suspend (logout_dialog->priv->up_client);
+-}
+-
+-static gboolean
+-gsm_logout_supports_system_hibernate (GsmLogoutDialog *logout_dialog)
+-{
+-        return up_client_get_can_hibernate (logout_dialog->priv->up_client);
+-}
+-
+-static gboolean
+@@ -204,27 +191,0 @@
+-static gboolean
+-gsm_logout_supports_reboot (GsmLogoutDialog *logout_dialog)
+-{
+-        gboolean ret;
+-
+-        ret = gsm_consolekit_can_restart (logout_dialog->priv->consolekit);
+-        if (!ret) {
+-                ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_REBOOT);
+-        }
+-
+-        return ret;
+-}
+-
+-static gboolean
+-gsm_logout_supports_shutdown (GsmLogoutDialog *logout_dialog)
+-{
+-        gboolean ret;
+-
+-        ret = gsm_consolekit_can_stop (logout_dialog->priv->consolekit);
+-
+-        if (!ret) {
+-                ret = gdm_supports_logout_action (GDM_LOGOUT_ACTION_SHUTDOWN);
+-        }
+-
+-        return ret;
+-}
+-
+@@ -397,13 +357,0 @@
+-                if (gsm_logout_supports_system_suspend (logout_dialog)) {
+-                        gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+-                                               _("S_uspend"),
+-                                               GSM_LOGOUT_RESPONSE_SLEEP);
+-                }
+-
+-                if (gsm_logout_supports_system_hibernate (logout_dialog)) {
+-                        gtk_dialog_add_button (GTK_DIALOG (logout_dialog),
+-                                               _("_Hibernate"),
+-                                               GSM_LOGOUT_RESPONSE_HIBERNATE);
+-                }
+-
+-                if (gsm_logout_supports_reboot (logout_dialog)) {
+@@ -413 +360,0 @@
+-                }
+@@ -419 +365,0 @@
+-                if (gsm_logout_supports_shutdown (logout_dialog)) {
+@@ -423 +369 @@
+-                }
++

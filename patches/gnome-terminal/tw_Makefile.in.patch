@@ -1,0 +1,11 @@
+--- help/zh_TW/Makefile.in
++++ fixed/help/zh_TW/Makefile.in
+@@ -491 +491 @@
+-	  scrollkeeper-preinstall $(docdir)/$(docname).xml $(srcdir)/$$file $$file.out; \
++	  scrollkeeper-preinstall $(docdir)/$(docname).xml $(srcdir)/$$file $$file; \
+@@ -498 +498 @@
+-		$(INSTALL_DATA) $$file.out $(DESTDIR)$(omf_dest_dir)/$$file; \
++		$(INSTALL_DATA) $$file $(DESTDIR)$(omf_dest_dir)/$$file; \
+@@ -512 +512 @@
+-		rm -f $$file.out; \
++		rm -f $$file; \
