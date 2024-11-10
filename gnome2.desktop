@@ -1,5 +1,0 @@
-[Desktop Entry]
-Name=GNOME 2
-Exec=env XDG_CONFIG_DIRS=/etc/xdg:/usr/local/etc/xdg /usr/local/bin/gnome2-session
-Type=Application
-DesktopNames=GNOME2

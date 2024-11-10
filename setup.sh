@@ -161,15 +161,17 @@ cd ../../../
 ### Rename gnome-session to gnome2-session to prevent collisions with GNOME>=3
 mv /usr/local/bin/gnome-session /usr/local/bin/gnome2-session
 
-### Remake desktop file and move it to /usr/etc since some display managers
-### (e.g. LightDM) do not look into /usr/local
+### Remake desktop file and place it to /usr/etc since some display managers
+### (e.g. LightDM) do not look into /usr/local/etc
 rm /usr/local/share/xsessions/gnome.desktop
 mkdir -p /usr/share/xsessions/
-cp gnome2.desktop /usr/share/xsessions/
+echo '[Desktop Entry]
+Name=GNOME 2
+Exec=env XDG_CONFIG_DIRS=/etc/xdg:/usr/local/etc/xdg /usr/local/bin/gnome2-session
+Type=Application' > /usr/share/xsessions/gnome2.desktop
 
 ### Add autostart file for polkit-gnome-agent to be able to mount filesystems in nautilus
-echo \
-"[Desktop Entry]
+echo "[Desktop Entry]
 Name=PolicyKit Authentication Agent for GNOME 2
 $(grep '^Exec\|^Terminal\|^Type\|^NoDisplay' /etc/xdg/autostart/polkit-gnome-authentication-agent-1.desktop)
 OnlyShowIn=GNOME;" > /usr/local/etc/xdg/autostart/polkit-gnome2-authentication-agent.desktop
@@ -179,7 +181,8 @@ sed '/NoDisplay=true/d' -i /usr/local/share/applications/evince.desktop \
 			   /usr/local/share/applications/gnomecc.desktop
 
 ### While default nm-applet do not autostart in GNOME, change it
-sed 's/NotShowIn=KDE;/OnlyShowIn=/' /etc/xdg/autostart/nm-applet.desktop > /usr/local/etc/xdg/autostart/nm-applet-gnome2.desktop
+sed 's/NotShowIn=KDE;/OnlyShowIn=/' /etc/xdg/autostart/nm-applet.desktop > \
+                                    /usr/local/etc/xdg/autostart/nm-applet-gnome2.desktop
 
 echo Yay! GNOME 2.32 was successfully installed!
 exit 0
