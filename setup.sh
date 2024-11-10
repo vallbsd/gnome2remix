@@ -139,6 +139,7 @@ rm /usr/local/bin/gconf-sanity-check-2
 
 ### No need for all utils except for gnome-screenshot
 prep gnome-utils
+patch -p1 -i ../patches/gnome-utils/configure.patch
 ./configure
 cd gnome-screenshot
 make && make install

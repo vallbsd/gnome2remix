@@ -1,0 +1,11 @@
+--- configure
++++ fixed/configure
+@@ -18893,8 +18892,0 @@
+-if test x$SCROLLKEEPER_CONFIG = xno; then :
+-
+-        as_fn_error "Couldn't find scrollkeeper-config. Please install the scrollkeeper package" "$LINENO" 5
+-
+-
+-fi
+-
+-
