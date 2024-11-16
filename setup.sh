@@ -58,7 +58,7 @@ inst()
 
   for param in "$@"
     do
-    if [ ! -z "$(echo $param | grep 'LIBS\|CXXFLAGS')" ]
+    if [ ! -z "$(echo $param | grep 'LIBS\|CFLAGS\|CXXFLAGS')" ]
     then
       compile_opts+="$param "
     elif [ ! -z "$(echo $param | grep '\-\-')" ]
@@ -162,8 +162,8 @@ cd ../../../
 ### Rename gnome-session to gnome2-session to prevent collisions with GNOME>=3
 mv /usr/local/bin/gnome-session /usr/local/bin/gnome2-session
 
-### Remake desktop file and place it to /usr/etc since some display managers
-### (e.g. LightDM) do not look into /usr/local/etc
+### Remake session file and place it to /usr/etc since some display managers
+### (e.g. LightDM by default) do not look into /usr/local/etc
 rm /usr/local/share/xsessions/gnome.desktop
 mkdir -p /usr/share/xsessions/
 echo '[Desktop Entry]

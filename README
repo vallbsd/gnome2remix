@@ -16,3 +16,6 @@ Notes:
 
   setup.sh works so that if error occured, it will continue from failed
   position on rerun.
+
+  To enable compositing:
+  gconftool-2 -s '/apps/metacity/general/compositing_manager' --type bool true
